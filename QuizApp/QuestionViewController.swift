@@ -27,11 +27,68 @@ class QuestionViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = options[indexPath.row]
+        cell.contentConfiguration = OptionCellContentConfiguration(text: options[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         options.count
+    }
+}
+
+class OptionCellContentView: UIView, UIContentView {
+    var configuration: UIContentConfiguration {
+        didSet {
+            self.configureCell(with: configuration)
+        }
+    }
+    
+    private let textLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    init(_ configuration: UIContentConfiguration) {
+        self.configuration = configuration
+        super.init(frame: .zero)
+        setupViews()
+        setupConstraints()
+        configureCell(with: configuration)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+private extension OptionCellContentView {
+    func setupViews() {
+        self.addSubview(textLabel)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            textLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            textLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            textLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
+        ])
+    }
+    
+    func configureCell(with configuration: UIContentConfiguration) {
+        guard let configuration = configuration as? OptionCellContentConfiguration else { return }
+        self.textLabel.text = configuration.text
+    }
+}
+
+struct OptionCellContentConfiguration: UIContentConfiguration {
+    var text: String = ""
+    func makeContentView() -> UIView & UIContentView {
+        return OptionCellContentView(self)
+    }
+    
+    func updated(for state: UIConfigurationState) -> OptionCellContentConfiguration {
+        return self
     }
 }
