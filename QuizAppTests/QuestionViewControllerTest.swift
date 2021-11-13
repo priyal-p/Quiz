@@ -35,41 +35,47 @@ class QuestionViewControllerTest: XCTestCase {
         XCTAssertNotNil(makeSUT().tableView.delegate)
     }
     
-    func test_optionSelected_notifiesDelegate() {
+    func test_optionSelected_amongTwoOptions_notifiesDelegateWithLastSelection() {
         // Given
-        var receivedAnswer = ""
-        let sut = makeSUT(options: ["A1"]) { receivedAnswer = $0 }
-        
-        // When
-        sut.tableView.select(row: 0)
-        
-        // Expected
-        XCTAssertEqual(receivedAnswer, "A1")
-    }
-    
-    func test_optionSelected_amongTwoOptions_notifiesDelegateWhenSelectionChanges() {
-        // Given
-        var receivedAnswer = ""
+        var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
         
         // When
         sut.tableView.select(row: 0)
         
         // Expected
-        XCTAssertEqual(receivedAnswer, "A1")
+        XCTAssertEqual(receivedAnswer, ["A1"])
         
         // When
         sut.tableView.select(row: 1)
         
         // Expected
-        XCTAssertEqual(receivedAnswer, "A2")
+        XCTAssertEqual(receivedAnswer, ["A2"])
     }
     
+    func test_optionSelected_multipleSelectionEnabled_notifiesDelegateWithLastSelection() {
+        // Given
+        var receivedAnswer = [String]()
+        let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
+        sut.tableView.allowsMultipleSelection = true
+        
+        // When
+        sut.tableView.select(row: 0)
+        
+        // Expected
+        XCTAssertEqual(receivedAnswer, ["A1"])
+        
+        // When
+        sut.tableView.select(row: 1)
+        
+        // Expected
+        XCTAssertEqual(receivedAnswer, ["A1","A2"])
+    }
     // MARK: Helpers
     
     func makeSUT(question: String = "",
                  options: [String] = [],
-                 selection: @escaping ((String) -> Void) = {_ in }) -> QuestionViewController {
+                 selection: @escaping (([String]) -> Void) = {_ in }) -> QuestionViewController {
         let sut = QuestionViewController(
             question: question,
             options: options,
