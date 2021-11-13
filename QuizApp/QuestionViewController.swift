@@ -27,7 +27,9 @@ class QuestionViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.contentConfiguration = OptionCellContentConfiguration(text: options[indexPath.row])
+        var defaultConfiguration = cell.defaultContentConfiguration()
+        defaultConfiguration.text = options[indexPath.row]
+        cell.contentConfiguration = defaultConfiguration
         return cell
     }
     
