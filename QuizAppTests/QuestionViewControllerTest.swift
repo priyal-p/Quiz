@@ -31,21 +31,42 @@ class QuestionViewControllerTest: XCTestCase {
         XCTAssertNotNil(makeSUT().tableView.dataSource)
     }
     
-//    func test_tableView_hasDelegate() {
-//        XCTAssertNotNil(makeSUT().tableView.delegate)
-//    }
+    func test_tableView_hasDelegate() {
+        XCTAssertNotNil(makeSUT().tableView.delegate)
+    }
+    
+    func test_optionSelected_notifiesDelegate() {
+        // Given
+        var receivedAnswer = ""
+        let sut = makeSUT(options: ["A1"]) { receivedAnswer = $0 }
+        
+        // When
+        sut.tableView.select(row: 0)
+        
+        // Expected
+        XCTAssertEqual(receivedAnswer, "A1")
+    }
+    
+    func test_optionSelected_amongTwoOptions_notifiesDelegateWhenSelectionChanges() {
+        // Given
+        var receivedAnswer = ""
+        let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
+        
+        // When
+        sut.tableView.select(row: 0)
+        
+        // Expected
+        XCTAssertEqual(receivedAnswer, "A1")
+        
+        // When
+        sut.tableView.select(row: 1)
+        
+        // Expected
+        XCTAssertEqual(receivedAnswer, "A2")
+    }
     
     // MARK: Helpers
     
-    func test_optionSelected_notifiesDelegate() {
-        var receivedAnswer = ""
-        let sut = makeSUT(options: ["A1"]) {
-            receivedAnswer = $0
-        }
-        let indexPath = IndexPath(row: 0, section: 0)
-        sut.tableView.delegate?.tableView?(sut.tableView, didSelectRowAt: indexPath)
-        XCTAssertEqual(receivedAnswer, "A1")
-    }
     func makeSUT(question: String = "",
                  options: [String] = [],
                  selection: @escaping ((String) -> Void) = {_ in }) -> QuestionViewController {
@@ -69,5 +90,9 @@ private extension UITableView {
             return configuration.text
         }
         return nil
+    }
+    
+    func select(row: Int) {
+        delegate?.tableView?(self, didSelectRowAt: IndexPath(row: row, section: 0))
     }
 }
