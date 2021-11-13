@@ -53,7 +53,25 @@ class QuestionViewControllerTest: XCTestCase {
         XCTAssertEqual(receivedAnswer, ["A2"])
     }
     
-    func test_optionSelected_multipleSelectionEnabled_notifiesDelegateWithLastSelection() {
+    func test_optionDeselected_amongTwoOptions_doesNotNotifyDelegateWithEmptySelection() {
+        // Given
+        var callbackCount = 0
+        let sut = makeSUT(options: ["A1", "A2"]) { _ in callbackCount += 1 }
+        
+        // When
+        sut.tableView.select(row: 0)
+        
+        // Expected
+        XCTAssertEqual(callbackCount, 1)
+        
+        // When
+        sut.tableView.deSelectRow(row: 0)
+        
+        // Expected
+        XCTAssertEqual(callbackCount, 1)
+    }
+    
+    func test_optionSelected_multipleSelectionEnabled_notifiesDelegateSelection() {
         // Given
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
@@ -71,6 +89,31 @@ class QuestionViewControllerTest: XCTestCase {
         // Expected
         XCTAssertEqual(receivedAnswer, ["A1","A2"])
     }
+    
+    func test_optionDeselected_multipleSelectionEnabled_notifiesDelegate() {
+        // Given
+        var receivedAnswer = [String]()
+        let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
+        sut.tableView.allowsMultipleSelection = true
+        
+        // When
+        sut.tableView.select(row: 0)
+        
+        // Expected
+        XCTAssertEqual(receivedAnswer, ["A1"])
+        
+        // When
+        sut.tableView.select(row: 1)
+        
+        // Expected
+        XCTAssertEqual(receivedAnswer, ["A1","A2"])
+        
+        sut.tableView.deSelectRow(row: 0)
+        XCTAssertEqual(receivedAnswer, ["A2"])
+        sut.tableView.deSelectRow(row: 1)
+        XCTAssertEqual(receivedAnswer, [])
+    }
+    
     // MARK: Helpers
     
     func makeSUT(question: String = "",
@@ -99,6 +142,15 @@ private extension UITableView {
     }
     
     func select(row: Int) {
-        delegate?.tableView?(self, didSelectRowAt: IndexPath(row: row, section: 0))
+        let indexPath = IndexPath(row: row, section: 0)
+        // To accumulate tableView selected rows and then call tableView delegate's didSelectRowAt
+        selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        delegate?.tableView?(self, didSelectRowAt: indexPath)
+    }
+    
+    func deSelectRow(row: Int) {
+        let indexPath = IndexPath(row: row, section: 0)
+        deselectRow(at: indexPath, animated: false)
+        delegate?.tableView?(self, didDeselectRowAt: indexPath)
     }
 }
