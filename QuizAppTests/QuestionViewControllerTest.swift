@@ -130,27 +130,10 @@ class QuestionViewControllerTest: XCTestCase {
 }
 
 private extension UITableView {
-    func cell(at row: Int) -> UITableViewCell? {
-        dataSource?.tableView(self, cellForRowAt: IndexPath(row: row, section: 0))
-    }
-    
     func title(at row: Int) -> String? {
         if let configuration = cell(at: row)?.contentConfiguration as? OptionCellContentConfiguration {
             return configuration.text
         }
         return nil
-    }
-    
-    func select(row: Int) {
-        let indexPath = IndexPath(row: row, section: 0)
-        // To accumulate tableView selected rows and then call tableView delegate's didSelectRowAt
-        selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        delegate?.tableView?(self, didSelectRowAt: indexPath)
-    }
-    
-    func deSelectRow(row: Int) {
-        let indexPath = IndexPath(row: row, section: 0)
-        deselectRow(at: indexPath, animated: false)
-        delegate?.tableView?(self, didDeselectRowAt: indexPath)
     }
 }
