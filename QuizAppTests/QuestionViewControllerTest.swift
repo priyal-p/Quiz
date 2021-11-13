@@ -52,6 +52,9 @@ private extension UITableView {
     }
     
     func title(at row: Int) -> String? {
-        cell(at: row)?.defaultContentConfiguration().text
+        if let configuration = cell(at: row)?.contentConfiguration as? OptionCellContentConfiguration {
+            return configuration.text
+        }
+        return nil
     }
 }
