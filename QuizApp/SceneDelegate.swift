@@ -20,9 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        let vc = QuestionViewController(question: "A Question", options: ["Option 1", "Option 2", "Option 3"]) {
-            print($0)
-        }
+//        let vc = QuestionViewController(question: "A Question", options: ["Option 1", "Option 2", "Option 3"]) {
+//            print($0)
+//        }
+        
+        let vc = ResultsViewController(summary: "Results", answers: [PresentableAnswer(question: "First Question First Question First Question First Question First Question First Question", answer: "Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1", wrongAnswer: nil), PresentableAnswer(question: "Second Question", answer: "Oprion 1", wrongAnswer: "Wrong Answer")])
         _ = vc.view
         vc.tableView.allowsMultipleSelection = false
         window.rootViewController = vc

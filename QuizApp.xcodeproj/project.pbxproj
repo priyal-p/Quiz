@@ -23,6 +23,10 @@
 		F285E670274052C700C96835 /* TableViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F285E66F274052C700C96835 /* TableViewHelpers.swift */; };
 		F285E67227405AA300C96835 /* CorrectAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F285E67127405AA300C96835 /* CorrectAnswerCell.xib */; };
 		F285E6742740F35F00C96835 /* WrongAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F285E6732740F35F00C96835 /* WrongAnswerCell.xib */; };
+		F285E6762740FD1600C96835 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F285E6752740FD1600C96835 /* UITableView+Extension.swift */; };
+		F285E6782740FD7E00C96835 /* PresentableAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F285E6772740FD7E00C96835 /* PresentableAnswer.swift */; };
+		F285E67A2740FDA300C96835 /* CorrectAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F285E6792740FDA300C96835 /* CorrectAnswerCell.swift */; };
+		F285E67C2740FDDC00C96835 /* WrongAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F285E67B2740FDDC00C96835 /* WrongAnswerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +67,10 @@
 		F285E66F274052C700C96835 /* TableViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHelpers.swift; sourceTree = "<group>"; };
 		F285E67127405AA300C96835 /* CorrectAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CorrectAnswerCell.xib; sourceTree = "<group>"; };
 		F285E6732740F35F00C96835 /* WrongAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WrongAnswerCell.xib; sourceTree = "<group>"; };
+		F285E6752740FD1600C96835 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		F285E6772740FD7E00C96835 /* PresentableAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableAnswer.swift; sourceTree = "<group>"; };
+		F285E6792740FDA300C96835 /* CorrectAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectAnswerCell.swift; sourceTree = "<group>"; };
+		F285E67B2740FDDC00C96835 /* WrongAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,10 @@
 				F285E665273E8EA500C96835 /* QuestionViewController.swift */,
 				F285E667273E8F6200C96835 /* QuestionViewController.xib */,
 				F285E67127405AA300C96835 /* CorrectAnswerCell.xib */,
+				F285E6752740FD1600C96835 /* UITableView+Extension.swift */,
+				F285E6772740FD7E00C96835 /* PresentableAnswer.swift */,
+				F285E6792740FDA300C96835 /* CorrectAnswerCell.swift */,
+				F285E67B2740FDDC00C96835 /* WrongAnswerCell.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -284,6 +296,10 @@
 			files = (
 				F255F2D9273E89D7009D8F7C /* AppDelegate.swift in Sources */,
 				F255F2DB273E89D7009D8F7C /* SceneDelegate.swift in Sources */,
+				F285E67A2740FDA300C96835 /* CorrectAnswerCell.swift in Sources */,
+				F285E6762740FD1600C96835 /* UITableView+Extension.swift in Sources */,
+				F285E6782740FD7E00C96835 /* PresentableAnswer.swift in Sources */,
+				F285E67C2740FDDC00C96835 /* WrongAnswerCell.swift in Sources */,
 				F285E666273E8EA500C96835 /* QuestionViewController.swift in Sources */,
 				F285E66C2740465800C96835 /* ResultsViewController.swift in Sources */,
 			);
