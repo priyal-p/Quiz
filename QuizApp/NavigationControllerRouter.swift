@@ -8,6 +8,20 @@
 import QuizGame
 import UIKit
 
+enum Question {
+    case singleAnswer
+    case multipleAnswer
+}
+
+protocol QuestionType {
+    var type: Question { get }
+}
+
+struct ConcreteQuestion: QuestionType {
+    let question: String
+    let type: Question
+}
+
 protocol ViewControllerFactory {
     func questionViewController(for question: String, answerCallack: @escaping (String) -> Void) -> UIViewController
 }
