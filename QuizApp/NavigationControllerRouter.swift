@@ -8,18 +8,18 @@
 import QuizGame
 import UIKit
 
-enum Question {
-    case singleAnswer
-    case multipleAnswer
-}
-
-protocol QuestionType {
-    var type: Question { get }
-}
-
-struct ConcreteQuestion: QuestionType {
-    let question: String
-    let type: Question
+enum Question<T: Hashable> {
+    case singleAnswer(T)
+    case multipleAnswer(T)
+    
+    var hashValue: Int {
+        switch self {
+        case .singleAnswer(let a):
+            return a.hashValue
+        case .multipleAnswer(let b):
+            return b.hashValue
+        }
+    }
 }
 
 protocol ViewControllerFactory {
