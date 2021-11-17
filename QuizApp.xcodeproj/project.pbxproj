@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F20B03702744F69C00535AC3 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B036F2744F69C00535AC3 /* ViewControllerFactory.swift */; };
+		F20B03722744F75600535AC3 /* iOSViewControllerFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B03712744F75600535AC3 /* iOSViewControllerFactoryTest.swift */; };
+		F20B03742744F81600535AC3 /* iOSViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B03732744F81600535AC3 /* iOSViewControllerFactory.swift */; };
 		F20FE25F2743D94D000F4D35 /* NavigationControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FE25E2743D94D000F4D35 /* NavigationControllerRouter.swift */; };
 		F20FE26127441DC6000F4D35 /* QuestionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FE26027441DC6000F4D35 /* QuestionTest.swift */; };
 		F20FE26327442626000F4D35 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FE26227442626000F4D35 /* Question.swift */; };
@@ -67,6 +70,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F20B036F2744F69C00535AC3 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		F20B03712744F75600535AC3 /* iOSViewControllerFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSViewControllerFactoryTest.swift; sourceTree = "<group>"; };
+		F20B03732744F81600535AC3 /* iOSViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSViewControllerFactory.swift; sourceTree = "<group>"; };
 		F20FE25E2743D94D000F4D35 /* NavigationControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouter.swift; sourceTree = "<group>"; };
 		F20FE26027441DC6000F4D35 /* QuestionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTest.swift; sourceTree = "<group>"; };
 		F20FE26227442626000F4D35 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 				F285E67B2740FDDC00C96835 /* WrongAnswerCell.swift */,
 				F20FE25E2743D94D000F4D35 /* NavigationControllerRouter.swift */,
 				F20FE26227442626000F4D35 /* Question.swift */,
+				F20B036F2744F69C00535AC3 /* ViewControllerFactory.swift */,
+				F20B03732744F81600535AC3 /* iOSViewControllerFactory.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 				F285E66F274052C700C96835 /* TableViewHelpers.swift */,
 				F2814A012741A43A002F397C /* NavigationControllerRouterTests.swift */,
 				F20FE26027441DC6000F4D35 /* QuestionTest.swift */,
+				F20B03712744F75600535AC3 /* iOSViewControllerFactoryTest.swift */,
 			);
 			path = QuizAppTests;
 			sourceTree = "<group>";
@@ -341,9 +350,11 @@
 				F285E6782740FD7E00C96835 /* PresentableAnswer.swift in Sources */,
 				F20FE26327442626000F4D35 /* Question.swift in Sources */,
 				F285E67C2740FDDC00C96835 /* WrongAnswerCell.swift in Sources */,
+				F20B03742744F81600535AC3 /* iOSViewControllerFactory.swift in Sources */,
 				F20FE25F2743D94D000F4D35 /* NavigationControllerRouter.swift in Sources */,
 				F285E666273E8EA500C96835 /* QuestionViewController.swift in Sources */,
 				F285E66C2740465800C96835 /* ResultsViewController.swift in Sources */,
+				F20B03702744F69C00535AC3 /* ViewControllerFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +364,7 @@
 			files = (
 				F285E664273E8D1300C96835 /* QuestionViewControllerTest.swift in Sources */,
 				F20FE26127441DC6000F4D35 /* QuestionTest.swift in Sources */,
+				F20B03722744F75600535AC3 /* iOSViewControllerFactoryTest.swift in Sources */,
 				F255F2F0273E89D8009D8F7C /* QuizAppTests.swift in Sources */,
 				F2814A022741A43A002F397C /* NavigationControllerRouterTests.swift in Sources */,
 				F285E66A2740457900C96835 /* ResultsViewControllerTest.swift in Sources */,
