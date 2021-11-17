@@ -10,14 +10,16 @@ import QuizGame
 struct ResultsPresenter {
     let result: Result<Question<String>, [String]>
     let correctAnswers: [Question<String>: [String]]
+    let orderedQuestions: [Question<String>]
     
     var summary: String {
         return "You get \(result.scores)/\(result.answers.count) correct"
     }
     
     var presentableAnswers: [PresentableAnswer] {
-        return result.answers.map { (question, userAnswer) in
-            guard let correctAnswer = correctAnswers[question] else {
+        return orderedQuestions.map { (question) in
+            guard let correctAnswer = correctAnswers[question],
+            let userAnswer = result.answers[question] else {
                 fatalError("Couldn't find correct answer for question: \(question)")
             }
             return presentableAnswer(question, userAnswer, correctAnswer)
