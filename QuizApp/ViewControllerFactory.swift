@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import QuizGame
+@testable import QuizGame
 
 protocol ViewControllerFactory {
     func questionViewController(for question: Question<String>, answerCallback: @escaping ([String]) -> Void) -> UIViewController

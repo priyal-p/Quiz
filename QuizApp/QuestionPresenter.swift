@@ -5,6 +5,8 @@
 //  Created by Priyal PORWAL on 17/11/21.
 //
 
+import QuizGame
+
 struct QuestionPresenter {
     let questions: [Question<String>]
     let question: Question<String>

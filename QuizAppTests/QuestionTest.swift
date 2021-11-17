@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import QuizApp
+@testable import QuizGame
 
 class QuestionTest: XCTestCase {
     func test_hashValue_singleAnswer_returnsTypeHash() {

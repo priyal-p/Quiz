@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import QuizGame
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let vc = QuestionViewController(question: "A Question", options: ["Option 1", "Option 2", "Option 3"]) {
 //            print($0)
 //        }
-        
+        //startGame(questions: questions, router: router, correctAnswers: correctAnswers)
         let vc = ResultsViewController(summary: "Results", answers: [PresentableAnswer(question: "First Question First Question First Question First Question First Question First Question", answer: "Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1", wrongAnswer: nil), PresentableAnswer(question: "Second Question", answer: "Oprion 1", wrongAnswer: "Wrong Answer")])
         _ = vc.view
         vc.tableView.allowsMultipleSelection = false
