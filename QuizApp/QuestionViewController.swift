@@ -11,6 +11,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    private(set) var allowsMultipleSelection: Bool = false
     private(set) var question = ""
     private(set) var options = [String]()
     private var selection: (([String]) -> Void)? = nil
@@ -18,16 +19,19 @@ class QuestionViewController: UIViewController {
     
     convenience init(question: String,
                      options: [String],
+                     isMultipleSelection: Bool,
                      selection: @escaping (([String]) -> Void)) {
         self.init()
         self.question = question
         self.options = options
+        self.allowsMultipleSelection = isMultipleSelection
         self.selection = selection
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.text = question
+        tableView.allowsMultipleSelection = allowsMultipleSelection
     }
 }
 

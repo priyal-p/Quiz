@@ -9,8 +9,11 @@ import QuizGame
 
 class iOSViewControllerFactory: ViewControllerFactory {
     private let options: [Question<String>: [String]]
+    private let questions: [Question<String>]
     
-    init(options: [Question<String>: [String]]) {
+    init(questions: [Question<String>],
+         options: [Question<String>: [String]]) {
+        self.questions = questions
         self.options = options
     }
     
@@ -24,14 +27,18 @@ class iOSViewControllerFactory: ViewControllerFactory {
     private func questionViewController(for question: Question<String>, options: [String], answerCallback: @escaping(([String]) -> Void)) -> UIViewController {
         switch question {
         case .singleAnswer(let value):
-            return QuestionViewController(question: value, options: options, selection: answerCallback)
-            
+            return questionViewController(for: question, value: value, options: options, allowsMultipleSelection: false, answerCallback: answerCallback)
         case .multipleAnswer(let value):
-            let controller = QuestionViewController(question: value, options: options, selection: answerCallback)
-            _ = controller.view
-            controller.tableView.allowsMultipleSelection = true
+            let controller = questionViewController(for: question, value: value, options: options, allowsMultipleSelection: true, answerCallback: answerCallback)
             return controller
         }
+    }
+    
+    private func questionViewController(for question: Question<String>, value: String, options: [String], allowsMultipleSelection: Bool, answerCallback: @escaping(([String]) -> Void)) -> QuestionViewController {
+        let presenter = QuestionPresenter(questions: questions, question: question)
+        let controller =  QuestionViewController(question: value, options: options, isMultipleSelection: allowsMultipleSelection, selection: answerCallback)
+        controller.title = presenter.title
+        return controller
     }
     
     func resultViewController(for result: Result<Question<String>, [String]>) -> UIViewController {

@@ -13,6 +13,8 @@
 		F20B03762745152000535AC3 /* ResultsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B03752745152000535AC3 /* ResultsPresenterTest.swift */; };
 		F20B03782745168100535AC3 /* ResultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B03772745168100535AC3 /* ResultHelper.swift */; };
 		F20B037A2745172B00535AC3 /* ResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B03792745172B00535AC3 /* ResultsPresenter.swift */; };
+		F20B037C274550E500535AC3 /* QuestionPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B037B274550E500535AC3 /* QuestionPresenterTest.swift */; };
+		F20B037E2745519E00535AC3 /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B037D2745519E00535AC3 /* QuestionPresenter.swift */; };
 		F20FE25F2743D94D000F4D35 /* NavigationControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FE25E2743D94D000F4D35 /* NavigationControllerRouter.swift */; };
 		F20FE26127441DC6000F4D35 /* QuestionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FE26027441DC6000F4D35 /* QuestionTest.swift */; };
 		F20FE26327442626000F4D35 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20FE26227442626000F4D35 /* Question.swift */; };
@@ -79,6 +81,8 @@
 		F20B03752745152000535AC3 /* ResultsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPresenterTest.swift; sourceTree = "<group>"; };
 		F20B03772745168100535AC3 /* ResultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHelper.swift; sourceTree = "<group>"; };
 		F20B03792745172B00535AC3 /* ResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPresenter.swift; sourceTree = "<group>"; };
+		F20B037B274550E500535AC3 /* QuestionPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPresenterTest.swift; sourceTree = "<group>"; };
+		F20B037D2745519E00535AC3 /* QuestionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		F20FE25E2743D94D000F4D35 /* NavigationControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouter.swift; sourceTree = "<group>"; };
 		F20FE26027441DC6000F4D35 /* QuestionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTest.swift; sourceTree = "<group>"; };
 		F20FE26227442626000F4D35 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				F20B036F2744F69C00535AC3 /* ViewControllerFactory.swift */,
 				F20B03732744F81600535AC3 /* iOSViewControllerFactory.swift */,
 				F20B03792745172B00535AC3 /* ResultsPresenter.swift */,
+				F20B037D2745519E00535AC3 /* QuestionPresenter.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				F20B03712744F75600535AC3 /* iOSViewControllerFactoryTest.swift */,
 				F20B03752745152000535AC3 /* ResultsPresenterTest.swift */,
 				F20B03772745168100535AC3 /* ResultHelper.swift */,
+				F20B037B274550E500535AC3 /* QuestionPresenterTest.swift */,
 			);
 			path = QuizAppTests;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				F285E6782740FD7E00C96835 /* PresentableAnswer.swift in Sources */,
 				F20FE26327442626000F4D35 /* Question.swift in Sources */,
 				F285E67C2740FDDC00C96835 /* WrongAnswerCell.swift in Sources */,
+				F20B037E2745519E00535AC3 /* QuestionPresenter.swift in Sources */,
 				F20B03742744F81600535AC3 /* iOSViewControllerFactory.swift in Sources */,
 				F20FE25F2743D94D000F4D35 /* NavigationControllerRouter.swift in Sources */,
 				F285E666273E8EA500C96835 /* QuestionViewController.swift in Sources */,
@@ -380,6 +387,7 @@
 				F285E66A2740457900C96835 /* ResultsViewControllerTest.swift in Sources */,
 				F285E670274052C700C96835 /* TableViewHelpers.swift in Sources */,
 				F20B03762745152000535AC3 /* ResultsPresenterTest.swift in Sources */,
+				F20B037C274550E500535AC3 /* QuestionPresenterTest.swift in Sources */,
 				F20B03782745168100535AC3 /* ResultHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

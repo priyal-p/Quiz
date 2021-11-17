@@ -71,11 +71,18 @@ class QuestionViewControllerTest: XCTestCase {
         XCTAssertEqual(callbackCount, 1)
     }
     
+    func test_viewDidLoad_withMultipleSelection_configureTableView() {
+        XCTAssertTrue(makeSUT(isMultipleSelection: true).allowsMultipleSelection)
+    }
+    
+    func test_viewDidLoad_withMultipleSelectionDisabled_configureTableView() {
+        XCTAssertFalse(makeSUT(isMultipleSelection: false).allowsMultipleSelection)
+    }
+    
     func test_optionSelected_multipleSelectionEnabled_notifiesDelegateSelection() {
         // Given
         var receivedAnswer = [String]()
-        let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
-        sut.tableView.allowsMultipleSelection = true
+        let sut = makeSUT(options: ["A1", "A2"], isMultipleSelection: true) { receivedAnswer = $0 }
         
         // When
         sut.tableView.select(row: 0)
@@ -93,8 +100,7 @@ class QuestionViewControllerTest: XCTestCase {
     func test_optionDeselected_multipleSelectionEnabled_notifiesDelegate() {
         // Given
         var receivedAnswer = [String]()
-        let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
-        sut.tableView.allowsMultipleSelection = true
+        let sut = makeSUT(options: ["A1", "A2"], isMultipleSelection: true) { receivedAnswer = $0 }
         
         // When
         sut.tableView.select(row: 0)
@@ -118,10 +124,12 @@ class QuestionViewControllerTest: XCTestCase {
     
     func makeSUT(question: String = "",
                  options: [String] = [],
+                 isMultipleSelection: Bool = false,
                  selection: @escaping (([String]) -> Void) = {_ in }) -> QuestionViewController {
         let sut = QuestionViewController(
             question: question,
             options: options,
+            isMultipleSelection: isMultipleSelection,
             selection: selection)
         _ = sut.view
         return sut
