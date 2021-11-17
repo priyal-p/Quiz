@@ -10,6 +10,8 @@ import UIKit
 
 protocol ViewControllerFactory {
     func questionViewController(for question: Question<String>, answerCallack: @escaping (String) -> Void) -> UIViewController
+    
+    func resultViewController(for result: Result<Question<String>, String>) -> UIViewController
 }
 
 class NavigationControllerRouter: Router {
@@ -22,11 +24,15 @@ class NavigationControllerRouter: Router {
     }
     
     func routeTo(question: Question<String>, answerCallback: @escaping (String) -> Void) {
-        let viewController = factory.questionViewController(for: question, answerCallack: answerCallback)
-        navigationController.pushViewController(viewController, animated: true)
+        show(factory.questionViewController(for: question, answerCallack: answerCallback))
     }
     
     func routeTo(result: Result<Question<String>, String>) {
+        show(factory.resultViewController(for: result))
         
+    }
+    
+    private func show(_ viewController: UIViewController) {
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
