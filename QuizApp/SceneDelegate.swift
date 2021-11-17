@@ -11,7 +11,7 @@ import QuizGame
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var game: Game<Question<String>, String, NavigationControllerRouter>?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -24,7 +24,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let vc = QuestionViewController(question: "A Question", options: ["Option 1", "Option 2", "Option 3"]) {
 //            print($0)
 //        }
-        //startGame(questions: questions, router: router, correctAnswers: correctAnswers)
+        let question = Question.singleAnswer("What's my nationality?")
+        let questions = [question]
+        let options = [question: ["Indian", "American", "Australian", "Canadian"]]
+        let correctAnswers = [question: ["Indian"]]
+        let navigationController = UINavigationController()
+        let factory = iOSViewControllerFactory(questions: questions, options: options, correctAnswers: correctAnswers)
+        let router = NavigationControllerRouter(navigationController, factory: factory)
+        game = startGame(questions: questions, router: router, correctAnswers: correctAnswers)
+        
         let vc = ResultsViewController(summary: "Results", answers: [PresentableAnswer(question: "First Question First Question First Question First Question First Question First Question", answer: "Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1", wrongAnswer: nil), PresentableAnswer(question: "Second Question", answer: "Oprion 1", wrongAnswer: "Wrong Answer")])
         _ = vc.view
         vc.tableView.allowsMultipleSelection = false
