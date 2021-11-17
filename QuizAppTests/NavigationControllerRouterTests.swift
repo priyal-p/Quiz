@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import QuizGame
 @testable import QuizApp
 class NavigationControllerRouterTests: XCTestCase {
     let navigationController = NonAnimatedNavigationCntroller()
@@ -18,24 +19,40 @@ class NavigationControllerRouterTests: XCTestCase {
         let viewController = UIViewController()
         let secondViewController = UIViewController()
         
-        factory.stub(question: "Q1", with: viewController)
-        factory.stub(question: "Q2", with: secondViewController)
+        factory.stub(question: Question.singleAnswer("Q1"), with: viewController)
+        factory.stub(question: Question.singleAnswer("Q2"), with: secondViewController)
         
-        sut.routeTo(question: "Q1", answerCallback: {_ in })
+        sut.routeTo(question: Question.singleAnswer("Q1"), answerCallback: {_ in })
 
-        sut.routeTo(question: "Q2", answerCallback: {_ in })
+        sut.routeTo(question: Question.singleAnswer("Q2"), answerCallback: {_ in })
         
         XCTAssertEqual(navigationController.viewControllers.count, 2)
         XCTAssertEqual(navigationController.viewControllers.first, viewController)
         XCTAssertEqual(navigationController.viewControllers.last, secondViewController)
     }
     
+//    func test_routeToResult_presentResultController() {
+//        let viewController = UIViewController()
+//        let result = Result(answers: [
+//            Question.singleAnswer("Q1"): "A1"]
+//, scores: 10)
+//
+//        factory.stub(result: result, viewController: viewController)
+//
+//        sut.routeTo(question: Question.singleAnswer("Q1"), answerCallback: {_ in })
+//
+//        sut.routeTo(question: Question.singleAnswer("Q2"), answerCallback: {_ in })
+//
+//        XCTAssertEqual(navigationController.viewControllers.count, 2)
+//        XCTAssertEqual(navigationController.viewControllers.first, viewController)
+//    }
+    
     func test_routeToQuetion_presentRightViewControllerWithRightAnswerCallback() {
-        factory.stub(question: "Q1", with: UIViewController())
+        factory.stub(question: Question.singleAnswer("Q1"), with: UIViewController())
         
         var callbackFired = false
-        sut.routeTo(question: "Q1", answerCallback: {_ in callbackFired = true})
-        factory.answerCallbacks["Q1"]?("A1")
+        sut.routeTo(question: Question.singleAnswer("Q1"), answerCallback: {_ in callbackFired = true})
+        factory.answerCallbacks[Question.singleAnswer("Q1")]?("A1")
         
         XCTAssertTrue(callbackFired)
     }
@@ -47,14 +64,19 @@ class NavigationControllerRouterTests: XCTestCase {
     }
     
     class ViewControllerFactoryStub: ViewControllerFactory {
-        private var stubbedQuestion = [String: UIViewController]()
-        var answerCallbacks = [String: ((String) -> Void)]()
+        private var stubbedQuestion = [Question<String>: UIViewController]()
+        var answerCallbacks = [Question<String>: ((String) -> Void)]()
+//        var stubbedResults = [Result<Question<String>, String>: UIViewController]()
         
-        func stub(question: String, with viewController: UIViewController) {
+        func stub(question: Question<String>, with viewController: UIViewController) {
             stubbedQuestion[question] = viewController
         }
         
-        func questionViewController(for question: String, answerCallack: @escaping (String) -> Void) -> UIViewController {
+//        func stub(result: Result<Question<String>, String>, viewController: UIViewController) {
+//            stubbedResults[result] = viewController
+//        }
+        
+        func questionViewController(for question: Question<String>, answerCallack: @escaping (String) -> Void) -> UIViewController {
             answerCallbacks[question] = answerCallack
             return stubbedQuestion[question] ?? UIViewController()
         }
