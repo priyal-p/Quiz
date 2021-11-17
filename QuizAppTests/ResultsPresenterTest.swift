@@ -13,14 +13,58 @@ class ResultsPresenterTest: XCTestCase {
     func test_summary_withTwoQuestionsAndScoreOne_returnsSummary() {
         let answers = [Question.singleAnswer("Q1"): ["A1"], Question.multipleAnswer("Q2"): ["A2", "A3"]]
         let result = Result(answers: answers, scores: 1)
-        let sut = ResultsPresenter(result: result)
+        let sut = ResultsPresenter(result: result, correctAnswers: [:])
         XCTAssertEqual(sut.summary, "You get 1/2 correct")
     }
     
-    func test_summary_withTwoQuestionsAndScoreTwo_returnsSummary() {
-        let answers = [Question.singleAnswer("Q1"): ["A1"], Question.multipleAnswer("Q2"): ["A2"], Question.multipleAnswer("Q3"): ["A3"]]
-        let result = Result(answers: answers, scores: 2)
-        let sut = ResultsPresenter(result: result)
-        XCTAssertEqual(sut.summary, "You get 2/3 correct")
+    func test_presentableAnswers_withoutQuestions_isEmpty() {
+        let answers = Dictionary<Question<String>, [String]>()
+        let result = Result(answers: answers, scores: 0)
+        let sut = ResultsPresenter(result: result, correctAnswers: [:])
+        XCTAssertTrue(sut.presentableAnswers.isEmpty)
+    }
+    
+    func test_presentableAnswers_withWrongSingleAnswer_mapsAnswer() {
+        let answers = [Question.singleAnswer("Q1"): ["A1"]]
+        let correctAnswers = [Question.singleAnswer("Q1"): ["A2"]]
+        let result = Result(answers: answers, scores: 0)
+        let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers)
+        XCTAssertEqual(sut.presentableAnswers.count, 1)
+        XCTAssertEqual(sut.presentableAnswers.first?.question, "Q1")
+        XCTAssertEqual(sut.presentableAnswers.first?.answer, "A2")
+        XCTAssertEqual(sut.presentableAnswers.first?.wrongAnswer, "A1")
+    }
+    
+    func test_presentableAnswers_withWrongMultipleAnswer_mapsAnswer() {
+        let answers = [Question.singleAnswer("Q1"): ["A1", "A4"]]
+        let correctAnswers = [Question.singleAnswer("Q1"): ["A2", "A3"]]
+        let result = Result(answers: answers, scores: 0)
+        let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers)
+        XCTAssertEqual(sut.presentableAnswers.count, 1)
+        XCTAssertEqual(sut.presentableAnswers.first?.question, "Q1")
+        XCTAssertEqual(sut.presentableAnswers.first?.answer, "A2, A3")
+        XCTAssertEqual(sut.presentableAnswers.first?.wrongAnswer, "A1, A4")
+    }
+    
+    func test_presentableAnswers_withRightSingleAnswer_mapsAnswer() {
+        let answers = [Question.singleAnswer("Q1"): ["A1"]]
+        let correctAnswers = [Question.singleAnswer("Q1"): ["A1"]]
+        let result = Result(answers: answers, scores: 1)
+        let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers)
+        XCTAssertEqual(sut.presentableAnswers.count, 1)
+        XCTAssertEqual(sut.presentableAnswers.first?.question, "Q1")
+        XCTAssertEqual(sut.presentableAnswers.first?.answer, "A1")
+        XCTAssertNil(sut.presentableAnswers.first?.wrongAnswer)
+    }
+    
+    func test_presentableAnswers_withRightMultipleAnswer_mapsAnswer() {
+        let answers = [Question.singleAnswer("Q1"): ["A1", "A4"]]
+        let correctAnswers = [Question.singleAnswer("Q1"): ["A1", "A4"]]
+        let result = Result(answers: answers, scores: 0)
+        let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers)
+        XCTAssertEqual(sut.presentableAnswers.count, 1)
+        XCTAssertEqual(sut.presentableAnswers.first?.question, "Q1")
+        XCTAssertEqual(sut.presentableAnswers.first?.answer, "A1, A4")
+        XCTAssertNil(sut.presentableAnswers.first?.wrongAnswer)
     }
 }
