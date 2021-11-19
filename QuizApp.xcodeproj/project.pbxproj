@@ -86,7 +86,7 @@
 		F255F2DA273E89D7009D8F7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F255F2E1273E89D8009D8F7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F255F2E4273E89D8009D8F7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F255F2E6273E89D8009D8F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F255F2E6273E89D8009D8F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = QuizApp/Info.plist; sourceTree = SOURCE_ROOT; };
 		F255F2EB273E89D8009D8F7C /* QuizAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F255F2F5273E89D8009D8F7C /* QuizAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F255F2F9273E89D8009D8F7C /* QuizAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAppUITests.swift; sourceTree = "<group>"; };
@@ -141,7 +141,6 @@
 				F255F2D8273E89D7009D8F7C /* AppDelegate.swift */,
 				F255F2DA273E89D7009D8F7C /* SceneDelegate.swift */,
 				F20B03732744F81600535AC3 /* iOSViewControllerFactory.swift */,
-				F255F2E6273E89D8009D8F7C /* Info.plist */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -346,6 +345,7 @@
 		F255F2D7273E89D7009D8F7C /* QuizApp */ = {
 			isa = PBXGroup;
 			children = (
+				F255F2E6273E89D8009D8F7C /* Info.plist */,
 				F20ACA952747E22300EF63EF /* Routing */,
 				F20ACA922747E1DC00EF63EF /* Presentation */,
 				F20ACA8C2747E10200EF63EF /* UI */,
