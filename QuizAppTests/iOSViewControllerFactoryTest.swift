@@ -49,7 +49,7 @@ class iOSViewControllerFactoryTest: XCTestCase {
     }
     
     func test_resultViewController_createsViewController() {
-        let result = Result(answers: [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]], scores: 1)
+        let result = Result(answers: [singleAnswerQuestion: Set(["A1"]), multipleAnswerQuestion: Set(["A2", "A3"])], scores: 1)
         let viewController = makeSUT(correctAnswers: [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]).resultViewController(for: result)
         XCTAssertNotNil(viewController as? ResultsViewController)
     }
@@ -67,7 +67,7 @@ class iOSViewControllerFactoryTest: XCTestCase {
     
     // MARK: Helpers
     
-    func makeSUT(options: [Question<String>: [String]] = [:], correctAnswers: [Question<String>: [String]] = [:]) -> iOSViewControllerFactory {
+    func makeSUT(options: [Question<String>: [String]] = [:], correctAnswers: [Question<String>: Set<String>] = [:]) -> iOSViewControllerFactory {
         return iOSViewControllerFactory(questions: [singleAnswerQuestion, multipleAnswerQuestion], options: options, correctAnswers: correctAnswers)
     }
     
@@ -76,17 +76,18 @@ class iOSViewControllerFactoryTest: XCTestCase {
     }
     
     func makeResults() -> (controller: ResultsViewController, presenter: ResultsPresenter) {
-        let userAnswers = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
-        let correctAnswers = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
+        let userAnswers = [singleAnswerQuestion: Set(["A1"]), multipleAnswerQuestion: Set(["A2", "A3"])]
+        let correctAnswers = [singleAnswerQuestion: Set(["A1"]), multipleAnswerQuestion: Set(["A2", "A3"])]
         let orderedQuestions = [singleAnswerQuestion, multipleAnswerQuestion]
-        
+        let orderedOptions = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
+
         let result = Result(answers: userAnswers, scores: 2)
         
         let sut = makeSUT(correctAnswers: correctAnswers)
         
         let viewController = sut.resultViewController(for: result) as! ResultsViewController
         
-        let presenter = ResultsPresenter(result: result, correctAnswers: correctAnswers, orderedQuestions: orderedQuestions)
+        let presenter = ResultsPresenter(result: result, correctAnswers: correctAnswers, options: orderedOptions, orderedQuestions: orderedQuestions)
         
         return (controller: viewController, presenter: presenter)
     }

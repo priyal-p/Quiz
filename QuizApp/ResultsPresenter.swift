@@ -8,8 +8,9 @@
 import QuizGame
 
 struct ResultsPresenter {
-    let result: Result<Question<String>, [String]>
-    let correctAnswers: [Question<String>: [String]]
+    let result: Result<Question<String>, Set<String>>
+    let correctAnswers: [Question<String>: Set<String>]
+    let options: [Question<String>: [String]]
     let orderedQuestions: [Question<String>]
     
     var summary: String {
@@ -26,19 +27,24 @@ struct ResultsPresenter {
         }
     }
     
-    private func presentableAnswer(_ question: Question<String>, _ userAnswer: [String], _ correctAnswer: [String]) -> PresentableAnswer {
+    private func presentableAnswer(_ question: Question<String>, _ userAnswer: Set<String>, _ correctAnswer: Set<String>) -> PresentableAnswer {
         switch question {
         case .singleAnswer(let value),
                 .multipleAnswer(let value):
-            return PresentableAnswer(question: value, answer: formattedAnswer(correctAnswer), wrongAnswer: wrongAnswer(userAnswer, correctAnswer))
+            return PresentableAnswer(question: value, answer: formattedAnswer(ordered(correctAnswer, for: question)), wrongAnswer: formattedWrongAnswer(ordered(userAnswer, for: question), ordered(correctAnswer, for: question)))
         }
+    }
+    
+    private func ordered(_ answers: Set<String>, for question: Question<String>) -> [String] {
+        guard let options = options[question] else { return [] }
+        return options.filter { answers.contains($0) }
     }
     
     private func formattedAnswer(_ answer: [String]) -> String {
         answer.joined(separator: ", ")
     }
     
-    private func wrongAnswer(_ userAnswer: [String], _ correctAnswer: [String]) -> String? {
+    private func formattedWrongAnswer(_ userAnswer: [String], _ correctAnswer: [String]) -> String? {
         return correctAnswer == userAnswer ? nil : formattedAnswer(userAnswer)
     }
 }
