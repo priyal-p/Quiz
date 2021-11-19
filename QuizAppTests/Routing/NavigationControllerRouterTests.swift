@@ -38,10 +38,10 @@ class NavigationControllerRouterTests: XCTestCase {
         let viewController = UIViewController()
         let secondViewController = UIViewController()
         
-        let result = Result(answers: [
+        let result = Result.make(answers: [
             singleAnswerQuestion: Set(["A1"])]
 , scores: 10)
-        let secondResult = Result(answers: [
+        let secondResult = Result.make(answers: [
             singleAnswerQuestion2: Set(["A2"])], scores: 20)
 
         factory.stub(result: result, viewController: viewController)

@@ -15,9 +15,7 @@ class ResultsPresenterTest: XCTestCase {
     let multipleAnswerQuestion = Question.multipleAnswer("Q2")
     
     func test_title_returnFormattedTitle() {
-        let answers = Dictionary<Question<String>, Set<String>>()
-        let result = Result(answers: answers, scores: 1)
-        
+        let result: Result<Question<String>, Set<String>> = Result.make()
         let sut = ResultsPresenter(result: result, correctAnswers: [:], options: [:], orderedQuestions: [])
         
         XCTAssertEqual(sut.title, "Result")
@@ -26,7 +24,7 @@ class ResultsPresenterTest: XCTestCase {
     
     func test_summary_withTwoQuestionsAndScoreOne_returnsSummary() {
         let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
-        let result = Result(answers: answers, scores: 1)
+        let result = Result.make(answers: answers, scores: 1)
         let orderedQuestions = [singleAnswerQuestion, multipleAnswerQuestion]
         let orderedOptions = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
 
@@ -35,11 +33,8 @@ class ResultsPresenterTest: XCTestCase {
         XCTAssertEqual(sut.summary, "You get 1/2 correct")
     }
     
-    func test_presentableAnswers_withoutQuestions_isEmpty() {
-        let answers = Dictionary<Question<String>, Set<String>>()
-        let result = Result(answers: answers, scores: 0)
-        
-        let sut = ResultsPresenter(result: result, correctAnswers: [:], options: [:], orderedQuestions: [])
+    func test_presentableAnswers_withoutQuestions_isEmpty() {        
+        let sut = ResultsPresenter(result: .make(), correctAnswers: [:], options: [:], orderedQuestions: [])
         
         XCTAssertTrue(sut.presentableAnswers.isEmpty)
     }
@@ -47,7 +42,7 @@ class ResultsPresenterTest: XCTestCase {
     func test_presentableAnswers_withWrongSingleAnswer_mapsAnswer() {
         let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1"]]
         let correctAnswers = [singleAnswerQuestion: Set(["A2"])]
-        let result = Result(answers: answers, scores: 0)
+        let result = Result.make(answers: answers, scores: 0)
         let orderedOptions = [singleAnswerQuestion: ["A1", "A2"]]
 
         let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers, options: orderedOptions, orderedQuestions: [singleAnswerQuestion])
@@ -61,7 +56,7 @@ class ResultsPresenterTest: XCTestCase {
     func test_presentableAnswers_withWrongMultipleAnswer_mapsAnswer() {
         let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1", "A4"]]
         let correctAnswers = [singleAnswerQuestion: Set(["A2", "A3"])]
-        let result = Result(answers: answers, scores: 0)
+        let result = Result.make(answers: answers, scores: 0)
         let orderedOptions = [singleAnswerQuestion: ["A1", "A2", "A3", "A4"]]
 
         let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers, options: orderedOptions, orderedQuestions: [singleAnswerQuestion])
@@ -75,7 +70,7 @@ class ResultsPresenterTest: XCTestCase {
     func test_presentableAnswers_withRightSingleAnswer_mapsAnswer() {
         let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1"]]
         let correctAnswers = [singleAnswerQuestion: Set(["A1"])]
-        let result = Result(answers: answers, scores: 1)
+        let result = Result.make(answers: answers, scores: 1)
         let orderedOptions = [singleAnswerQuestion: ["A1"]]
 
         
@@ -90,7 +85,7 @@ class ResultsPresenterTest: XCTestCase {
     func test_presentableAnswers_withRightMultipleAnswer_mapsAnswer() {
         let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1", "A4"]]
         let correctAnswers = [singleAnswerQuestion: Set(["A1", "A4"])]
-        let result = Result(answers: answers, scores: 0)
+        let result = Result.make(answers: answers, scores: 0)
         let orderedOptions = [singleAnswerQuestion: ["A1", "A4"]]
 
         let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers, options: orderedOptions, orderedQuestions: [singleAnswerQuestion])
@@ -106,7 +101,7 @@ class ResultsPresenterTest: XCTestCase {
         let correctAnswers = [singleAnswerQuestion: Set(["A1", "A4"]),
                             multipleAnswerQuestion: Set(["A2", "A3"])]
         let orderedQuestions = [multipleAnswerQuestion, singleAnswerQuestion]
-        let result = Result(answers: answers,
+        let result = Result.make(answers: answers,
                             scores: 0)
         let orderedOptions = [ multipleAnswerQuestion: ["A2", "A3"], singleAnswerQuestion: ["A1", "A4"]]
         let sut = ResultsPresenter(result: result, correctAnswers: correctAnswers, options: orderedOptions, orderedQuestions: orderedQuestions)
