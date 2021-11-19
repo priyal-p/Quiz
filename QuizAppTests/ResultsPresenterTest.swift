@@ -13,6 +13,17 @@ class ResultsPresenterTest: XCTestCase {
     
     let singleAnswerQuestion = Question.singleAnswer("Q1")
     let multipleAnswerQuestion = Question.multipleAnswer("Q2")
+    
+    func test_title_returnFormattedTitle() {
+        let answers = Dictionary<Question<String>, Set<String>>()
+        let result = Result(answers: answers, scores: 1)
+        
+        let sut = ResultsPresenter(result: result, correctAnswers: [:], options: [:], orderedQuestions: [])
+        
+        XCTAssertEqual(sut.title, "Result")
+        
+    }
+    
     func test_summary_withTwoQuestionsAndScoreOne_returnsSummary() {
         let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
         let result = Result(answers: answers, scores: 1)

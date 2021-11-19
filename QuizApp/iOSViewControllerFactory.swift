@@ -46,6 +46,8 @@ class iOSViewControllerFactory: ViewControllerFactory {
     
     func resultViewController(for result: Result<Question<String>, Set<String>>) -> UIViewController {
         let presenter = ResultsPresenter(result: result, correctAnswers: correctAnswers, options: options, orderedQuestions: questions)
-        return ResultsViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
+        let controller = ResultsViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
+        controller.title = presenter.title
+        return controller
     }
 }

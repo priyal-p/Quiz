@@ -19,6 +19,10 @@ class iOSViewControllerFactoryTest: XCTestCase {
         XCTAssertEqual(makeQuestionViewController(question: singleAnswerQuestion).title, presenter.title)
     }
     
+    func test_viewDidLoad_title() {
+        XCTAssertEqual(makeResults().controller.title, "Result")
+    }
+    
     func test_questionViewController_multipleAnswer_createsControllerWithTitle() {
         let presenter = QuestionPresenter(questions: [singleAnswerQuestion, multipleAnswerQuestion], question: multipleAnswerQuestion)
         XCTAssertEqual(makeQuestionViewController(question: multipleAnswerQuestion).title, presenter.title)

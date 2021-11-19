@@ -17,6 +17,10 @@ struct ResultsPresenter {
         return "You get \(result.scores)/\(result.answers.count) correct"
     }
     
+    var title: String {
+        return "Result"
+    }
+    
     var presentableAnswers: [PresentableAnswer] {
         return orderedQuestions.map { (question) in
             guard let correctAnswer = correctAnswers[question],
