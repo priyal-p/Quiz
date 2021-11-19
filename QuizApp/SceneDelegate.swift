@@ -17,29 +17,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window = UIWindow(windowScene: windowScene)
-        
-//        let vc = QuestionViewController(question: "A Question", options: ["Option 1", "Option 2", "Option 3"]) {
-//            print($0)
-//        }
-        let question = Question.singleAnswer("What's my nationality?")
-        let questions = [question]
-        let options = [question: ["Indian", "American", "Australian", "Canadian"]]
-        let correctAnswers = [question: ["Indian"]]
+        let question1 = Question.singleAnswer("What's my nationality?")
+        let question2 = Question.multipleAnswer("What's my favorite color?")
+        let questions = [question1, question2]
+        let options = [question1: ["Indian", "American", "Australian", "Canadian"], question2: ["Red", "Blue", "Green", "Violet"]]
+        let correctAnswers = [question1: ["Indian"], question2: ["Red", "Blue"]]
         let navigationController = UINavigationController()
         let factory = iOSViewControllerFactory(questions: questions, options: options, correctAnswers: correctAnswers)
         let router = NavigationControllerRouter(navigationController, factory: factory)
         game = startGame(questions: questions, router: router, correctAnswers: correctAnswers)
         
-        let vc = ResultsViewController(summary: "Results", answers: [PresentableAnswer(question: "First Question First Question First Question First Question First Question First Question", answer: "Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1", wrongAnswer: nil), PresentableAnswer(question: "Second Question", answer: "Oprion 1", wrongAnswer: "Wrong Answer")])
-        _ = vc.view
-        vc.tableView.allowsMultipleSelection = false
-        window.rootViewController = vc
-        
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = navigationController
         self.window = window
-        
         window.makeKeyAndVisible()
     }
 
