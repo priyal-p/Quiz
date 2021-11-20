@@ -14,6 +14,7 @@ public class Game <Question,
     }
 }
 
+@available(*, deprecated)
 public func startGame<Question: Hashable, Answer: Equatable, R: Router>(questions: [Question], router: R, correctAnswers: [Question: Answer]) -> Game<Question, Answer, R> {
     let flow = Flow(questions: questions, router: router) {
         return scoring($0, correctAnswer: correctAnswers)
