@@ -10,7 +10,7 @@ import XCTest
 
 class FlowTest: XCTestCase {
     
-    let router = RouterSpy()
+    private let router = RouterSpy()
     
     func test_start_withNoQuestions_doesNotRouteToQuestion() {
         makeSUT(question: []).start()
@@ -127,8 +127,24 @@ class FlowTest: XCTestCase {
     
     // MARK: Helpers
     
-    func makeSUT(question: [String],
+    private func makeSUT(question: [String],
                  scoring: @escaping ([String: String]) -> Int = { _ in return 0}) -> Flow<RouterSpy> {
         Flow(questions: question, router: router, scoring: scoring)
     }
+    
+    private class RouterSpy: Router {
+        var routedQuestions: [String] = []
+        var answerCallback: (String) -> Void = {_ in }
+        var routedResult: Result<String, String>? = nil
+        
+        func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
+            routedQuestions.append(question)
+            self.answerCallback = answerCallback
+        }
+        
+        func routeTo(result: Result<String, String>) {
+            routedResult = result
+        }
+    }
+
 }
