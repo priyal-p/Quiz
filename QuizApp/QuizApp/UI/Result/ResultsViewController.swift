@@ -14,7 +14,9 @@ class ResultsViewController: UIViewController {
     private(set) var summary = ""
     private(set) var answers = [PresentableAnswer]()
 
-    convenience init(summary: String, answers: [PresentableAnswer]) {
+    convenience init(
+        summary: String,
+        answers: [PresentableAnswer]) {
         self.init()
         self.summary = summary
         self.answers = answers

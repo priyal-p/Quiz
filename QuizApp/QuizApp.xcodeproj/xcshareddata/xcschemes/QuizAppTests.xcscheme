@@ -23,6 +23,16 @@
                ReferencedContainer = "container:QuizApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F255F2F4273E89D8009D8F7C"
+               BuildableName = "QuizAppUITests.xctest"
+               BlueprintName = "QuizAppUITests"
+               ReferencedContainer = "container:QuizApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
