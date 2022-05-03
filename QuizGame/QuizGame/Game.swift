@@ -5,6 +5,7 @@
 //  Created by Priyal PORWAL on 14/11/21.
 //
 
+@available(*, deprecated)
 public class Game <Question,
                    Answer,
                    R: Router> where R.Question == Question, R.Answer == Answer {
