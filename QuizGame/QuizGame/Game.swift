@@ -16,7 +16,11 @@ public class Game <Question,
 }
 
 @available(*, deprecated)
-public func startGame<Question: Hashable, Answer: Equatable, R: Router>(questions: [Question], router: R, correctAnswers: [Question: Answer]) -> Game<Question, Answer, R> {
+public func startGame
+<Question: Hashable, Answer: Equatable, R: Router>(
+    questions: [Question],
+    router: R,
+    correctAnswers: [Question: Answer]) -> Game<Question, Answer, R> {
     let flow = Flow(questions: questions, router: router) {
         return scoring($0, correctAnswer: correctAnswers)
     }
@@ -24,8 +28,10 @@ public func startGame<Question: Hashable, Answer: Equatable, R: Router>(question
     return Game(flow: flow)
 }
 
-private func scoring<Question: Hashable, Answer: Equatable>(_ answers: [Question: Answer],
-                                        correctAnswer: [Question: Answer]) -> Int {
+private func scoring
+<Question: Hashable, Answer: Equatable>(
+    _ answers: [Question: Answer],
+    correctAnswer: [Question: Answer]) -> Int {
     answers.reduce(0) { score, tuple in
         score + (correctAnswer[tuple.key] == tuple.value ? 1 : 0)
     }

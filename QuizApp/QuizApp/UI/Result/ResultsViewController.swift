@@ -45,6 +45,7 @@ extension ResultsViewController: UITableViewDataSource {
 }
 
 extension ResultsViewController: UITableViewDelegate {
+    // Configures Table View automtic dimension
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return answers[indexPath.row].wrongAnswer == nil ? 70 : 100
     }
