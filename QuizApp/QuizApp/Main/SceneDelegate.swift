@@ -11,7 +11,7 @@ import QuizGame
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var game: Game<Question<String>, Set<String>, NavigationControllerRouter>?
+    var game: Game<Question<String>, [String], NavigationControllerRouter>?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let question2 = Question.multipleAnswer("What's my favorite color?")
         let questions = [question1, question2]
         let options = [question1: ["Indian", "American", "Australian", "Canadian"], question2: ["Red", "Blue", "Green", "Violet"]]
-        let correctAnswers = [question1: Set(["Indian"]), question2: Set(["Red", "Blue"])]
+        let correctAnswers = [question1: ["Indian"], question2: ["Red", "Blue"]]
         let navigationController = UINavigationController()
         let factory = iOSViewControllerFactory(questions: questions, options: options, correctAnswers: correctAnswers)
         let router = NavigationControllerRouter(navigationController, factory: factory)

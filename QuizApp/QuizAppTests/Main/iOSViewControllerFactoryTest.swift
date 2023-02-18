@@ -53,7 +53,7 @@ class iOSViewControllerFactoryTest: XCTestCase {
     }
     
     func test_resultViewController_createsViewController() {
-        let result = Result.make(answers: [singleAnswerQuestion: Set(["A1"]), multipleAnswerQuestion: Set(["A2", "A3"])], scores: 1)
+        let result = Result.make(answers: [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]], scores: 1)
         let viewController = makeSUT(correctAnswers: [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]).resultViewController(for: result)
         XCTAssertNotNil(viewController as? ResultsViewController)
     }
@@ -71,7 +71,7 @@ class iOSViewControllerFactoryTest: XCTestCase {
     
     // MARK: Helpers
     
-    func makeSUT(options: [Question<String>: [String]] = [:], correctAnswers: [Question<String>: Set<String>] = [:]) -> iOSViewControllerFactory {
+    func makeSUT(options: [Question<String>: [String]] = [:], correctAnswers: [Question<String>: [String]] = [:]) -> iOSViewControllerFactory {
         return iOSViewControllerFactory(questions: [singleAnswerQuestion, multipleAnswerQuestion], options: options, correctAnswers: correctAnswers)
     }
     
@@ -80,8 +80,8 @@ class iOSViewControllerFactoryTest: XCTestCase {
     }
     
     func makeResults() -> (controller: ResultsViewController, presenter: ResultsPresenter) {
-        let userAnswers = [singleAnswerQuestion: Set(["A1"]), multipleAnswerQuestion: Set(["A2", "A3"])]
-        let correctAnswers = [singleAnswerQuestion: Set(["A1"]), multipleAnswerQuestion: Set(["A2", "A3"])]
+        let userAnswers = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
+        let correctAnswers = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
         let orderedQuestions = [singleAnswerQuestion, multipleAnswerQuestion]
         let orderedOptions = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
 

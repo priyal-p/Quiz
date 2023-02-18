@@ -15,7 +15,7 @@ class ResultsPresenterTest: XCTestCase {
     let multipleAnswerQuestion = Question.multipleAnswer("Q2")
     
     func test_title_returnFormattedTitle() {
-        let result: Result<Question<String>, Set<String>> = Result.make()
+        let result: Result<Question<String>, [String]> = Result.make()
         let sut = ResultsPresenter(result: result, correctAnswers: [:], options: [:], orderedQuestions: [])
         
         XCTAssertEqual(sut.title, "Result")
@@ -23,7 +23,7 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_summary_withTwoQuestionsAndScoreOne_returnsSummary() {
-        let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
+        let answers: Dictionary<Question<String>, [String]> = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
         let result = Result.make(answers: answers, scores: 1)
         let orderedQuestions = [singleAnswerQuestion, multipleAnswerQuestion]
         let orderedOptions = [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A2", "A3"]]
@@ -40,8 +40,8 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_presentableAnswers_withWrongSingleAnswer_mapsAnswer() {
-        let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1"]]
-        let correctAnswers = [singleAnswerQuestion: Set(["A2"])]
+        let answers: Dictionary<Question<String>, [String]> = [singleAnswerQuestion: ["A1"]]
+        let correctAnswers = [singleAnswerQuestion: ["A2"]]
         let result = Result.make(answers: answers, scores: 0)
         let orderedOptions = [singleAnswerQuestion: ["A1", "A2"]]
 
@@ -54,8 +54,8 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_presentableAnswers_withWrongMultipleAnswer_mapsAnswer() {
-        let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1", "A4"]]
-        let correctAnswers = [singleAnswerQuestion: Set(["A2", "A3"])]
+        let answers: Dictionary<Question<String>, [String]> = [singleAnswerQuestion: ["A1", "A4"]]
+        let correctAnswers = [singleAnswerQuestion: ["A2", "A3"]]
         let result = Result.make(answers: answers, scores: 0)
         let orderedOptions = [singleAnswerQuestion: ["A1", "A2", "A3", "A4"]]
 
@@ -68,8 +68,8 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_presentableAnswers_withRightSingleAnswer_mapsAnswer() {
-        let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1"]]
-        let correctAnswers = [singleAnswerQuestion: Set(["A1"])]
+        let answers: Dictionary<Question<String>, [String]> = [singleAnswerQuestion: ["A1"]]
+        let correctAnswers = [singleAnswerQuestion: ["A1"]]
         let result = Result.make(answers: answers, scores: 1)
         let orderedOptions = [singleAnswerQuestion: ["A1"]]
 
@@ -83,8 +83,8 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_presentableAnswers_withRightMultipleAnswer_mapsAnswer() {
-        let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1", "A4"]]
-        let correctAnswers = [singleAnswerQuestion: Set(["A1", "A4"])]
+        let answers: Dictionary<Question<String>, [String]> = [singleAnswerQuestion: ["A1", "A4"]]
+        let correctAnswers = [singleAnswerQuestion: ["A1", "A4"]]
         let result = Result.make(answers: answers, scores: 0)
         let orderedOptions = [singleAnswerQuestion: ["A1", "A4"]]
 
@@ -97,9 +97,9 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_presentableAnswers_withTwoQuestions_mapsOrderedAnswer() {
-        let answers: Dictionary<Question<String>, Set<String>> = [singleAnswerQuestion: ["A1", "A4"], multipleAnswerQuestion: ["A2", "A3"]]
-        let correctAnswers = [singleAnswerQuestion: Set(["A1", "A4"]),
-                            multipleAnswerQuestion: Set(["A2", "A3"])]
+        let answers: Dictionary<Question<String>, [String]> = [singleAnswerQuestion: ["A1", "A4"], multipleAnswerQuestion: ["A2", "A3"]]
+        let correctAnswers = [singleAnswerQuestion: ["A1", "A4"],
+                            multipleAnswerQuestion: ["A2", "A3"]]
         let orderedQuestions = [multipleAnswerQuestion, singleAnswerQuestion]
         let result = Result.make(answers: answers,
                             scores: 0)
