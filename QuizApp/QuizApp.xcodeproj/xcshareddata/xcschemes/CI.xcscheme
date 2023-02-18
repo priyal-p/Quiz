@@ -45,7 +45,7 @@
                BlueprintIdentifier = "F28149E627419F31002F397C"
                BuildableName = "QuizGame_iOSTests.xctest"
                BlueprintName = "QuizGame_iOSTests"
-               ReferencedContainer = "container:../../QuizGame/QuizGame.xcodeproj">
+               ReferencedContainer = "container:../QuizGame/QuizGame.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

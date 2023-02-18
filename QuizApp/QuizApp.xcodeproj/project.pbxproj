@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2086D4C29A16F4F0042CBBD /* QuizGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2086D4B29A16F4F0042CBBD /* QuizGame.framework */; };
+		F2086D4D29A16F4F0042CBBD /* QuizGame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2086D4B29A16F4F0042CBBD /* QuizGame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F20B03702744F69C00535AC3 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B036F2744F69C00535AC3 /* ViewControllerFactory.swift */; };
 		F20B03722744F75600535AC3 /* iOSViewControllerFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B03712744F75600535AC3 /* iOSViewControllerFactoryTest.swift */; };
 		F20B03742744F81600535AC3 /* iOSViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B03732744F81600535AC3 /* iOSViewControllerFactory.swift */; };
@@ -22,8 +24,6 @@
 		F255F2E5273E89D8009D8F7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F255F2E3273E89D8009D8F7C /* LaunchScreen.storyboard */; };
 		F255F2FA273E89D8009D8F7C /* QuizAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255F2F9273E89D8009D8F7C /* QuizAppUITests.swift */; };
 		F255F2FC273E89D8009D8F7C /* QuizAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255F2FB273E89D8009D8F7C /* QuizAppUITestsLaunchTests.swift */; };
-		F28149FE2741A2AD002F397C /* QuizGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28149FD2741A2AD002F397C /* QuizGame.framework */; };
-		F28149FF2741A2AD002F397C /* QuizGame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F28149FD2741A2AD002F397C /* QuizGame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F2814A022741A43A002F397C /* NavigationControllerRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2814A012741A43A002F397C /* NavigationControllerRouterTests.swift */; };
 		F285E664273E8D1300C96835 /* QuestionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F285E663273E8D1300C96835 /* QuestionViewControllerTest.swift */; };
 		F285E666273E8EA500C96835 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F285E665273E8EA500C96835 /* QuestionViewController.swift */; };
@@ -41,13 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F255F2EC273E89D8009D8F7C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F255F2CD273E89D7009D8F7C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F255F2D4273E89D7009D8F7C;
-			remoteInfo = QuizApp;
-		};
 		F255F2F6273E89D8009D8F7C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F255F2CD273E89D7009D8F7C /* Project object */;
@@ -58,13 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F2814A002741A2AD002F397C /* Embed Frameworks */ = {
+		F2086D4E29A16F4F0042CBBD /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F28149FF2741A2AD002F397C /* QuizGame.framework in Embed Frameworks */,
+				F2086D4D29A16F4F0042CBBD /* QuizGame.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F2086D4B29A16F4F0042CBBD /* QuizGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuizGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20B036F2744F69C00535AC3 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		F20B03712744F75600535AC3 /* iOSViewControllerFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSViewControllerFactoryTest.swift; sourceTree = "<group>"; };
 		F20B03732744F81600535AC3 /* iOSViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -113,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F28149FE2741A2AD002F397C /* QuizGame.framework in Frameworks */,
+				F2086D4C29A16F4F0042CBBD /* QuizGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +371,7 @@
 		F28149FC2741A2AD002F397C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2086D4B29A16F4F0042CBBD /* QuizGame.framework */,
 				F28149FD2741A2AD002F397C /* QuizGame.framework */,
 			);
 			name = Frameworks;
@@ -392,7 +387,7 @@
 				F255F2D1273E89D7009D8F7C /* Sources */,
 				F255F2D2273E89D7009D8F7C /* Frameworks */,
 				F255F2D3273E89D7009D8F7C /* Resources */,
-				F2814A002741A2AD002F397C /* Embed Frameworks */,
+				F2086D4E29A16F4F0042CBBD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -414,7 +409,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F255F2ED273E89D8009D8F7C /* PBXTargetDependency */,
 			);
 			name = QuizAppTests;
 			productName = QuizAppTests;
@@ -560,11 +554,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F255F2ED273E89D8009D8F7C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F255F2D4273E89D7009D8F7C /* QuizApp */;
-			targetProxy = F255F2EC273E89D8009D8F7C /* PBXContainerItemProxy */;
-		};
 		F255F2F7273E89D8009D8F7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F255F2D4273E89D7009D8F7C /* QuizApp */;

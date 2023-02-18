@@ -26,23 +26,6 @@
 		F2B8DE70273D829B0090D855 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B8DE6F273D829B0090D855 /* Flow.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F28149E927419F31002F397C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F2B8DE4A273D80630090D855 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F28149DD27419F31002F397C;
-			remoteInfo = QuizGame_iOS;
-		};
-		F2B8DE5F273D80630090D855 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F2B8DE4A273D80630090D855 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F2B8DE52273D80630090D855;
-			remoteInfo = QuizGame;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		F20B03812745A8C500535AC3 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		F270DC7627415E38006BDC0F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -183,7 +166,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F28149EA27419F31002F397C /* PBXTargetDependency */,
 			);
 			name = QuizGame_iOSTests;
 			productName = QuizGame_iOSTests;
@@ -219,7 +201,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F2B8DE60273D80630090D855 /* PBXTargetDependency */,
 			);
 			name = QuizGameTests;
 			productName = QuizGameTests;
@@ -348,19 +329,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F28149EA27419F31002F397C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F28149DD27419F31002F397C /* QuizGame_iOS */;
-			targetProxy = F28149E927419F31002F397C /* PBXContainerItemProxy */;
-		};
-		F2B8DE60273D80630090D855 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F2B8DE52273D80630090D855 /* QuizGame */;
-			targetProxy = F2B8DE5F273D80630090D855 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F28149EF27419F31002F397C /* Debug */ = {
@@ -528,6 +496,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -587,6 +556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
