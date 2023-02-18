@@ -18,6 +18,18 @@ class NavigationControllerRouterTests: XCTestCase {
     let singleAnswerQuestion = Question.singleAnswer("Q1")
     let singleAnswerQuestion2 = Question.singleAnswer("Q2")
     let multipleAnswerQuestion = Question.multipleAnswer("Q1")
+
+    func test_routeToQuestionOnce_presentQuestionController() {
+        sut.routeTo(question: singleAnswerQuestion) { _ in }
+        XCTAssertEqual(navigationController.viewControllers.count, 1)
+    }
+
+    func test_routeToQuestionTwice_presentQuestionController() {
+        sut.routeTo(question: singleAnswerQuestion) { _ in }
+        sut.routeTo(question: singleAnswerQuestion) { _ in }
+        XCTAssertEqual(navigationController.viewControllers.count, 2)
+    }
+
     func test_routeToQuetion_presentQuestionController() {
         let viewController = UIViewController()
         let secondViewController = UIViewController()
@@ -121,7 +133,9 @@ class NavigationControllerRouterTests: XCTestCase {
     }
     
     // MARK: Helpers
-    
+
+    // As in production we can have animated controller, to avoid delay due to animation, use animated false here
+    // Don't change the behaviour
     class NonAnimatedNavigationCntroller: UINavigationController {
         override func pushViewController(_ viewController: UIViewController, animated: Bool) {
             super.pushViewController(viewController, animated: false)
