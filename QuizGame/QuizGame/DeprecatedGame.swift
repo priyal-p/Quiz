@@ -48,6 +48,16 @@ private class QuizDelegateToRouterAdapter<R: Router>: QuizDelegate {
     }
 }
 
+@available(*, deprecated)
+public protocol Router {
+    associatedtype Question: Hashable
+    associatedtype Answer
+    typealias AnswerCallback = (Answer) -> Void
+    func routeTo(question: Question,
+                 answerCallback: @escaping AnswerCallback)
+    func routeTo(result: Result<Question, Answer>)
+}
+
 private func scoring
 <Question: Hashable, Answer: Equatable>(
     _ answers: [Question: Answer],
