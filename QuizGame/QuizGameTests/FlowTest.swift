@@ -81,21 +81,21 @@ class FlowTest: XCTestCase {
     func test_start_withNoQuestions_doesNotResult() {
         makeSUT(question: []).start()
         
-        XCTAssertEqual(delegate.routedResult?.answers, [:])
+        XCTAssertEqual(delegate.handledResult?.answers, [:])
     }
     
     func test_startWithOneQuestion_doesNotRouteToResult() {
         let sut = makeSUT(question: ["Q1"])
         sut.start()
         
-        XCTAssertNil(delegate.routedResult)
+        XCTAssertNil(delegate.handledResult)
     }
     
     func test_startAndAnswerFirstQuestion_withTwoQuestions_doesNotRouteToResult() {
         let sut = makeSUT(question: ["Q1", "Q2"])
         sut.start()
         delegate.answerCallback("A1")
-        XCTAssertNil(delegate.routedResult)
+        XCTAssertNil(delegate.handledResult)
     }
     
     func test_startAndAnswerFirstAndSecondQuestion_withTwoQuestions_routeToResult() {
@@ -104,7 +104,7 @@ class FlowTest: XCTestCase {
         delegate.answerCallback("A1")
         delegate.answerCallback("A2")
         
-        XCTAssertEqual(delegate.routedResult?.answers, ["Q1": "A1", "Q2": "A2"])
+        XCTAssertEqual(delegate.handledResult?.answers, ["Q1": "A1", "Q2": "A2"])
     }
     
     func test_startAndAnswerFirstAndSecondQuestion_withTwoQuestions_scores() {
@@ -115,7 +115,7 @@ class FlowTest: XCTestCase {
         delegate.answerCallback("A1")
         delegate.answerCallback("A2")
         
-        XCTAssertEqual(delegate.routedResult?.scores, 10)
+        XCTAssertEqual(delegate.handledResult?.scores, 10)
     }
     
     func test_startAndAnswerFirstAndSecondQuestion_withTwoQuestions_scoresWithRightAnswers() {
@@ -128,7 +128,7 @@ class FlowTest: XCTestCase {
         delegate.answerCallback("A1")
         delegate.answerCallback("A2")
         
-        XCTAssertEqual(delegate.routedResult?.scores, 20)
+        XCTAssertEqual(delegate.handledResult?.scores, 20)
         XCTAssertEqual(receivedAnswers, ["Q1": "A1", "Q2": "A2"])
     }
     
@@ -144,7 +144,7 @@ class FlowTest: XCTestCase {
     private class DelegateSpy: Router, QuizDelegate {
         var handledQuestions: [String] = []
         var answerCallback: (String) -> Void = {_ in }
-        var routedResult: Result<String, String>? = nil
+        var handledResult: Result<String, String>? = nil
         
         func handle(question: String, answerCallback: @escaping AnswerCallback) {
             handledQuestions.append(question)
@@ -152,7 +152,7 @@ class FlowTest: XCTestCase {
         }
         
         func handle(result: Result<String, String>) {
-            routedResult = result
+            handledResult = result
         }
         
         func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
